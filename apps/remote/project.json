@@ -54,14 +54,6 @@
       "options": {
         "lintFilePatterns": ["apps/remote/**/*.ts"]
       }
-    },
-    "test": {
-      "executor": "@nrwl/jest:jest",
-      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
-      "options": {
-        "jestConfig": "apps/remote/jest.config.ts",
-        "passWithNoTests": true
-      }
     }
   }
 }
