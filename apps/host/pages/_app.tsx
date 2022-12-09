@@ -1,18 +1,7 @@
-import { AppProps } from 'next/app';
-import Head from 'next/head';
-import './styles.css';
+import type { AppProps } from 'next/app';
+import * as React from 'react';
+import '../styles/globals.css';
 
-function CustomApp({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Head>
-        <title>Welcome to host!</title>
-      </Head>
-      <main className="app">
-        <Component {...pageProps} />
-      </main>
-    </>
-  );
+export default function App({ Component, pageProps }: AppProps) {
+  return <Component {...pageProps} />;
 }
-
-export default CustomApp;

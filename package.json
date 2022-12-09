@@ -3,15 +3,16 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "start": "nx run-many --target=serve --projects=remote",
-    "build": "nx run-many --target=build --projects=remote",
-    "test": "nx test"
+    "start": "nx run-many --target=serve --projects=host,remote",
+    "build": "nx run-many --target=build --projects=host,remote"
   },
   "private": true,
   "dependencies": {
     "@module-federation/nextjs-mf": "^5.12.9",
     "@nrwl/next": "15.3.0",
     "core-js": "^3.6.5",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.0.0",
     "next": "13.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

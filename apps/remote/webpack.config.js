@@ -14,12 +14,26 @@ module.exports = async (config_0) => {
     optimization: {
       runtimeChunk: false,
     },
+    devtool: 'source-map',
+    devServer: {
+      hot: true,
+      port: 3001,
+      static: './dist',
+      compress: true,
+    },
     entry: './src/index.ts',
     resolve: {
       alias: {
         svelte: path.dirname(require.resolve('svelte/package.json')),
       },
       extensions: ['.mjs', '.js', '.ts', '.svelte'],
+    },
+    output: {
+      path: path.resolve(__dirname, '../../dist/apps/remote'),
+      publicPath: 'http://localhost:3001/',
+      uniqueName: 'remote',
+      filename: '[name].[contenthash].js',
+      clean: true,
     },
     module: {
       rules: [
