@@ -1,12 +1,10 @@
-//@ts-check
+// @ts-check
 
 const { withNx } = require('@nrwl/next/plugins/with-nx');
 const { NextFederationPlugin } = require('@module-federation/nextjs-mf');
 
-/**
- * @type {import('@nrwl/next/plugins/with-nx').WithNxOptions}
- **/
-const nextConfig = {
+/** @type {import('@nrwl/next/plugins/with-nx').WithNxOptions} */
+module.exports = withNx({
   nx: {
     svgr: false,
   },
@@ -17,6 +15,14 @@ const nextConfig = {
   },
   webpack(config) {
     config.plugins.push(
+      //
+      // 💡
+      // It's a bad practice to expose anything from host
+      // which creates a circular imports.
+      // It works, but it will significantly decrease maintainability.
+      // Please don't expose anything here.
+      // You can create a shared library or another remote module, instead.
+      //
       new NextFederationPlugin({
         name: 'host',
         remotes: {
@@ -29,6 +35,4 @@ const nextConfig = {
 
     return config;
   },
-};
-
-module.exports = withNx(nextConfig);
+});
