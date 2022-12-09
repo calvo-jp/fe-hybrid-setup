@@ -16,12 +16,13 @@ type Params = {
 
 export default function AppPage({ data }: Props) {
   const targetRef = React.useRef<HTMLDivElement>(null);
-  const component = React.useRef<any>(null);
 
   React.useEffect(() => {
+    let component: any;
+
     import('remote/index').then((mod) => {
       if (targetRef.current) {
-        component.current = new mod.default({
+        component = new mod.default({
           target: targetRef.current,
           props: { data },
         });
@@ -29,7 +30,7 @@ export default function AppPage({ data }: Props) {
     });
 
     return () => {
-      if (component.current) component.current.$destroy();
+      if (component) component.$destroy();
     };
   }, [data]);
 

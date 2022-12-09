@@ -5,6 +5,7 @@ declare module '*.svg' {
 }
 
 declare module 'remote/*' {
-  const Component: any;
-  export default Component;
+  import type { ComponentType } from 'svelte';
+  const component: ComponentType;
+  export default component;
 }
