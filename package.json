@@ -9,6 +9,7 @@
   },
   "private": true,
   "dependencies": {
+    "@module-federation/nextjs-mf": "^5.12.9",
     "@nrwl/next": "15.3.0",
     "core-js": "^3.6.5",
     "next": "13.0.0",
