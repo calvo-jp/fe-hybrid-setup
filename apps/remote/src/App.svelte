@@ -1,4 +1,6 @@
 <script lang="ts">
+  import './tailwind.css';
+
   interface IApp {
     id: string;
     slug: string;
@@ -15,42 +17,19 @@
 </script>
 
 {#if data}
-  <div class="container">
+  <div class="max-w-[900px] mx-auto p-[4rem]">
     <div>
-      <h1>{data.name}</h1>
-      <p>{data.description}</p>
+      <h1 class="font-serif text-4xl font-bold">{data.name}</h1>
+      <p class="text-neutral-800">{data.description}</p>
 
-      <div class="image">
-        <img src={data.cover.url} alt={data.name} draggable="false" />
+      <div class="mt-4 w-fit flex overflow-hidden">
+        <img
+          class="max-w-full max-h-[400px]"
+          src={data.cover.url}
+          alt={data.name}
+          draggable="false"
+        />
       </div>
     </div>
   </div>
 {/if}
-
-<style>
-  .container {
-    max-width: 900px;
-    margin: 0px auto;
-    padding: 4rem;
-  }
-
-  h1 {
-    font-family: 'Source Serif Pro', Arial, Helvetica, sans-serif;
-  }
-
-  p {
-    color: #262626;
-  }
-
-  .image {
-    margin-top: 1rem;
-    width: fit-content;
-    display: flex;
-    overflow: hidden;
-  }
-
-  .image img {
-    max-width: 100%;
-    max-height: 400px;
-  }
-</style>
