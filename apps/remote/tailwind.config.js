@@ -2,7 +2,10 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{ts,tsx,html,svelte}'],
+  // TODO:
+  // use glob here
+  // ref: https://github.com/nrwl/nx/issues/8355
+  content: ['apps/remote/src/**/*.{ts,tsx,html,svelte}'],
   theme: {
     extend: {
       fontFamily: {
