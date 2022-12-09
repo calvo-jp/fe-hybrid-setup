@@ -1,13 +1,8 @@
-const { join } = require('path');
-const { createGlobPatternsForDependencies } = require('@nrwl/next/tailwind');
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    join(__dirname, '**/*.{ts,tsx,html,svelte}'),
-    ...createGlobPatternsForDependencies(__dirname),
-  ],
+  content: ['apps/remote/src/**/*.{ts,tsx,html,svelte}'],
   theme: {
     extend: {
       fontFamily: {
