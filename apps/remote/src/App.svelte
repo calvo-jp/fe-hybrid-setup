@@ -1,4 +1,6 @@
 <script lang="ts">
+  import './tailwind.css';
+
   interface IApp {
     id: string;
     slug: string;
