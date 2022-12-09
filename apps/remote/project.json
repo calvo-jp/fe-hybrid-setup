@@ -1,0 +1,67 @@
+{
+  "name": "remote",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/remote/src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nrwl/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "outputPath": "dist/apps/remote",
+        "compiler": "babel",
+        "main": "apps/remote/src/index.ts",
+        "tsConfig": "apps/remote/tsconfig.app.json",
+        "index": "apps/remote/src/index.html",
+        "baseHref": "/",
+        "scripts": [],
+        "webpackConfig": "apps/remote/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "fileReplacements": [
+            {
+              "replace": "apps/remote/src/environments/environment.ts",
+              "with": "apps/remote/src/environments/environment.prod.ts"
+            }
+          ]
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nrwl/webpack:dev-server",
+      "options": {
+        "buildTarget": "remote:build",
+        "webpackConfig": "apps/remote/webpack.config.js"
+      },
+      "configurations": {
+        "production": {
+          "buildTarget": "remote:build:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/remote/**/*.ts"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{projectRoot}"],
+      "options": {
+        "jestConfig": "apps/remote/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  }
+}
