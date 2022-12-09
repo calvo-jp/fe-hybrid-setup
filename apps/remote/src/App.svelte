@@ -28,41 +28,6 @@
 {/if}
 
 <style>
-  :global(*, *::after, *::before) {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-  }
-
-  :global(html) {
-    scroll-behavior: smooth;
-  }
-
-  :global(body) {
-    font-family: "Source Sans Pro", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-      Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-    background-color: white;
-    color: #171717;
-    scroll-behavior: smooth;
-  }
-
-  :global(input, select, textarea, button) {
-    font: inherit;
-    color: inherit;
-  }
-
-  :global(button) {
-    cursor: pointer;
-  }
-
-  :global(a) {
-    text-decoration: none;
-  }
-
-  :global(ol, ul) {
-    list-style: none;
-  }
-
   .container {
     max-width: 900px;
     margin: 0px auto;
@@ -70,7 +35,7 @@
   }
 
   h1 {
-    font-family: "Source Serif Pro", Arial, Helvetica, sans-serif;
+    font-family: 'Source Serif Pro', Arial, Helvetica, sans-serif;
   }
 
   p {

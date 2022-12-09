@@ -1,4 +1,3 @@
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const path = require('path');
 const webpack = require('webpack');
 const sveltePreprocess = require('svelte-preprocess');
@@ -47,13 +46,9 @@ module.exports = async (config_0) => {
               },
               emitCss: prod,
               hotReload: !prod,
-              preprocess: sveltePreprocess({ sourceMap: !prod }),
+              preprocess: sveltePreprocess({}),
             },
           },
-        },
-        {
-          test: /\.css$/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader'],
         },
         {
           test: /\.tsx?$/,
@@ -68,9 +63,6 @@ module.exports = async (config_0) => {
       ],
     },
     plugins: [
-      new MiniCssExtractPlugin({
-        filename: '[name].[contenthash].css',
-      }),
       new webpack.container.ModuleFederationPlugin({
         name: 'remote',
         filename: 'remote-entry.js',
