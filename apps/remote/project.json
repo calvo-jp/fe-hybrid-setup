@@ -13,7 +13,7 @@
         "outputPath": "dist/apps/remote",
         "compiler": "babel",
         "main": "apps/remote/src/index.ts",
-        "tsConfig": "apps/remote/tsconfig.app.json",
+        "tsConfig": "apps/remote/tsconfig.json",
         "index": "apps/remote/src/index.html",
         "baseHref": "/",
         "scripts": [],
