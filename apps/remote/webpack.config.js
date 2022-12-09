@@ -13,7 +13,7 @@ module.exports = async (config_0) => {
     optimization: {
       runtimeChunk: false,
     },
-    devtool: 'source-map',
+    devtool: prod ? false : 'source-map',
     devServer: {
       hot: true,
       port: 3001,
