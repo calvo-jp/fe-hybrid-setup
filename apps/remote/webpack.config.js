@@ -1,5 +1,5 @@
 const path = require('path');
-const webpack = require('webpack');
+const { ModuleFederationPlugin } = require('webpack').container;
 const sveltePreprocess = require('svelte-preprocess');
 const { merge } = require('webpack-merge');
 
@@ -44,9 +44,11 @@ module.exports = async (config_0) => {
               compilerOptions: {
                 dev: !prod,
               },
-              emitCss: prod,
-              hotReload: !prod,
-              preprocess: sveltePreprocess({}),
+              emitCss: true,
+              hotReload: true,
+              preprocess: sveltePreprocess({
+                postcss: true,
+              }),
             },
           },
         },
@@ -63,7 +65,7 @@ module.exports = async (config_0) => {
       ],
     },
     plugins: [
-      new webpack.container.ModuleFederationPlugin({
+      new ModuleFederationPlugin({
         name: 'remote',
         filename: 'remote-entry.js',
         remotes: {},
