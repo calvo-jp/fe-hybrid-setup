@@ -15,17 +15,22 @@ type Params = {
 };
 
 export default function AppPage({ data }: Props) {
-  const ref = React.useRef<HTMLDivElement>(null);
+  const targetRef = React.useRef<HTMLDivElement>(null);
+  const component = React.useRef<any>(null);
 
   React.useEffect(() => {
     import('remote/index').then((mod) => {
-      if (ref.current) {
-        new mod.default({
-          target: ref.current,
+      if (targetRef.current) {
+        component.current = new mod.default({
+          target: targetRef.current,
           props: { data },
         });
       }
     });
+
+    return () => {
+      if (component.current) component.current.$destroy();
+    };
   }, [data]);
 
   return (
@@ -36,7 +41,7 @@ export default function AppPage({ data }: Props) {
         {/* <!-- (seo) meta, jsonld, etc... --> */}
       </Head>
 
-      <div ref={ref} />
+      <div ref={targetRef} />
     </>
   );
 }
