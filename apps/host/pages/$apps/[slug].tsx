@@ -13,32 +13,55 @@ type Params = {
   slug: string;
 };
 
-export default function AppPage({ data }: Props) {
+export default function AppPage(props: Props) {
   const targetRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    let component: any;
+    let SvelteComponent: any;
 
-    import('remote/index').then((mod) => {
-      if (targetRef.current) {
-        component = new mod.default({
-          target: targetRef.current,
-          props: { data },
+    const target = targetRef.current;
+
+    if (target) {
+      import('remote/index').then((module) => {
+        SvelteComponent = new module.default({
+          props,
+          target,
         });
-      }
-    });
+      });
+    }
 
     return () => {
-      if (component) component.$destroy();
+      if (SvelteComponent) {
+        SvelteComponent.$destroy();
+      }
     };
-  }, [data]);
+  }, [props]);
 
+  const { name, description, slug, cover } = props.data;
   return (
     <>
       <Head>
-        <title>{data.name}</title>
+        <title>{name}</title>
+        <link rel="canonical" href={`${slug}.<domain>`} />
+        <meta name="description" content={description} />
 
-        {/* <!-- (seo) meta, jsonld, etc... --> */}
+        {/* <!-- Open Graph --> */}
+        <meta property="og:title" content={name} />
+        <meta property="og:description" content={description} />
+        <meta property="og:image" content={cover.url} />
+        <meta property="og:site_name" content="" />
+        <meta property="og:url" content={`${slug}.<domain>`} />
+        <meta property="og:type" content="website" />
+
+        {/* <!-- Twitter --> */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="" />
+        <meta name="twitter:creator" content="" />
+        <meta name="twitter:title" content={name} />
+        <meta name="twitter:description" content={description} />
+        <meta name="twitter:image" content={cover.url} />
+
+        {/* <!-- TODO: JSON LD --> */}
       </Head>
 
       <div ref={targetRef} />
