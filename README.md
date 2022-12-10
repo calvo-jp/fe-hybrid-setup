@@ -1,7 +1,5 @@
-# HOV FE Set-up
+# FE set-up exploration
 
-## TODO
-
-- [x] Monorepo (using nx)
-- [x] Micro FE (NextJs + Svelte)
-- [x] Multi-tenant
+- Micro FE
+- Monorepo
+- Multi-tenant
