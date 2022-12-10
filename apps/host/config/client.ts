@@ -1,7 +1,8 @@
 import { GraphQLClient } from 'graphql-request';
 
-const hygraphContentApi = process.env.NEXT_PUBLIC_HYGRAPH_CONTENT_API as string;
+const HYGRAPH_CONTENT_API =
+  'https://api-ap-northeast-1.hygraph.com/v2/clbdh25vy1rlo01ujgtr649sr/master';
 
-const client = new GraphQLClient(hygraphContentApi);
+const client = new GraphQLClient(HYGRAPH_CONTENT_API);
 
 export default client;
