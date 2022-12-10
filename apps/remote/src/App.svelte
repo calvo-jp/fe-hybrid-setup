@@ -14,6 +14,16 @@
   }
 
   export let data: IApp | undefined = undefined;
+
+  let deleting = false;
+
+  const deleteApp = async () => {
+    await new Promise<void>((resolve) => {
+      setTimeout(() => {
+        resolve();
+      }, 3000);
+    });
+  };
 </script>
 
 {#if data}
@@ -30,6 +40,23 @@
           draggable="false"
         />
       </div>
+
+      <button
+        class="bg-white border border-sky-300 mt-6 px-4 py-3 rounded-sm text-sky-500 hover:border-sky-400 hover:bg-sky-50 transition-all duration-300 outline-none focus:border-sky-400 focus:bg-sky-50 disabled:border-neutral-200 disabled:text-neutral-400 disabled:cursor-not-allowed disabled:bg-white"
+        disabled={deleting}
+        on:click={async () => {
+          try {
+            deleting = true;
+            await deleteApp();
+            window.location.href = 'http://localhost:3000';
+          } catch {
+          } finally {
+            deleting = false;
+          }
+        }}
+      >
+        {deleting ? 'Loading...' : 'Delete app'}
+      </button>
     </div>
   </div>
 {/if}
